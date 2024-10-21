@@ -1,45 +1,29 @@
-// Declare global variables
-let numRows = 0;
-let numCols = 0;
+//Global variables
 let colorSelected; 
+let grid = document.getElementById("grid"); // table grid in index
 
-// Add a row
+//add cell and set onclick function
+function addCell(row) {
+    let cell = row.insertCell();
+    cell.onclick = function () {
+        colorCell(cell, colorSelected);
+    };
+}
+
+//Add row
 function addR() {
-    alert("Clicked Add Row"); // Replace this line with your code.
+    let row = grid.insertRow(-1);
+    let col = document.querySelector("tr").children.length;
+    let i = 0;
+    do { addCell(row); i++; }
+    while (i < col);
 }
 
-// Add a column
+//Add column
 function addC() {
-    alert("Clicked Add Col"); // Replace this line with your code.
+    let rows = document.querySelectorAll("tr");
+    rows.forEach(row => addCell(row));
+    if (rows.length === 0) { 
+        addR();}
 }
 
-// Remove a row
-function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
-}
-
-// Remove a column
-function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
-}
-
-// Set global variable for selected color
-function selectColor(){
-    colorSelected = document.getElementById("selectedColorId").value;
-    console.log(colorSelected);
-}
-
-// Fill all uncolored cells
-function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
-}
-
-// Fill all cells
-function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
-}
-
-// Clear all cells
-function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
-}
