@@ -27,3 +27,27 @@ function addC() {
         addR();}
 }
 
+//Remove row
+function removeR() {
+    if (grid.children.length > 0) {
+        grid.deleteRow(-1);
+    }
+}
+
+//Remove column
+function removeC() {
+    document.querySelectorAll("tr").forEach(row => row.deleteCell(-1));
+    
+    //Check if 0 columns, remove all rows 
+    let Row = document.querySelector("tr");
+    if (Row && Row.children.length === 0) {
+        document.querySelectorAll("tr").forEach(row => grid.deleteRow(row.rowIndex));
+    }
+}
+
+// Remove all rows and columns
+function removeAll() {
+    while (grid.rows.length > 0) {
+        grid.deleteRow(0);
+    }
+}
