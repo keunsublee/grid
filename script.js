@@ -45,9 +45,42 @@ function removeC() {
     }
 }
 
-// Remove all rows and columns
+//Remove all rows and columns
 function removeAll() {
     while (grid.rows.length > 0) {
         grid.deleteRow(0);
     }
 }
+
+function colorCell(cell) {
+    if (colorSelected !== undefined) {
+        cell.style.backgroundColor = colorSelected;
+    }
+}
+
+//Set selected color from dropdown
+function selectColor(){
+    colorSelected = document.getElementById("selectedColorId").value;
+}
+
+//Fill all uncolored
+function fillU(){
+    document.querySelectorAll("td").forEach(cell => {
+        if (cell.style.backgroundColor === "") {
+            colorCell(cell);
+        }
+    });
+}
+
+//Fill all cells
+function fillAll(){
+    document.querySelectorAll("td").forEach(cell => colorCell(cell));
+}
+
+//Clear all cells
+function clearAll(){
+    document.querySelectorAll("td").forEach(cell => {
+        cell.style.backgroundColor = "";
+    });
+}
+
